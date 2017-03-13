@@ -1,7 +1,7 @@
 'use strict';
 
 require('rootpath')();
-console.log("KJSDFHKSDJFH");
+
 // Required modules
 var express = require('express');
 var routes = require('routes/api');
