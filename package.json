@@ -1,15 +1,20 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend API for Moola",
+  "description": "Backend for JD NFL Schedule Maker",
   "main": "server.js",
   "scripts": {
     "test": "npm test"
   },
-  "author": "Brad Ware",
-  "license": "ISC",
+  "author": "JakeWilliams22",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
-    "rootpath": "^0.1.2"
-  }
+    "rootpath": "^0.1.2",
+    "pg": "2.x"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }  
 }

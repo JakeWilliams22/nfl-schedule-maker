@@ -5,6 +5,7 @@ require('rootpath')();
 // Required modules
 var express = require('express');
 var routes = require('routes/api');
+var pg = require('pg');
 
 // Create our Express application & define port
 var app = express();
@@ -34,4 +35,11 @@ app.use(function (err, req, res, next) {
 
 app.listen(port, function () {
   console.log('Server is running on port', port);
+});
+
+pg.connect('http://ec2-23-21-220-23.compute-1.amazonaws.com', function(err, client, done) {
+  client.query("CREATE TABLE test(id SERIAL PRIMARY KEY)", function(err, result) {
+    done();
+    if(err) return console.error(err);
+  });
 });
