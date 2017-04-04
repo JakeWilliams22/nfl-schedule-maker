@@ -36,10 +36,12 @@ app.use(function (err, req, res, next) {
 app.listen(port, function () {
   console.log('Server is running on port', port);
 });
-
-pg.connect('http://ec2-23-21-220-23.compute-1.amazonaws.com', function(err, client, done) {
-  client.query("CREATE TABLE test(id SERIAL PRIMARY KEY)", function(err, result) {
-    done();
-    if(err) return console.error(err);
-  }); 
+console.log(process.env.DATABASE_URL);
+// pg.connect('http://ec2-23-21-220-23.compute-1.amazonaws.com', function(err, client, done) {
+pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  // client.query("CREATE TABLE test(id SERIAL PRIMARY KEY)", function(err, result) {
+    // done();
+    // if(err) return console.error(err);
+  // }); 
+  console.log("EY");
 });
