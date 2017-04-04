@@ -41,5 +41,5 @@ pg.connect('http://ec2-23-21-220-23.compute-1.amazonaws.com', function(err, clie
   client.query("CREATE TABLE test(id SERIAL PRIMARY KEY)", function(err, result) {
     done();
     if(err) return console.error(err);
-  });
+  }); 
 });
