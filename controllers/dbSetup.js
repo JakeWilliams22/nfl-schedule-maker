@@ -17,11 +17,11 @@ var testResponse = "";
 var done = false;
 function testPreferenceInsert() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("INSERT INTO preferences VALUES (0, 'test', 1, 'panthers', 2017);", function(err, result) {
+    client.query("INSERT INTO preferences VALUES (1, 'test', 1, 'panthers', 2017);", function(err, result) {
       done();
+      done = true;
       if(err) return console.error(err);
       testResponse = "success"
-      done = true;
     });
   });
   while(!done);
