@@ -1,7 +1,7 @@
 'use strict';
 
 require('rootpath')();
-require(pg);
+require('pg');
 
 function createPreferencesTable() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
