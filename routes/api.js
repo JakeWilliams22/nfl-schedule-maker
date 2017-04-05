@@ -2,7 +2,7 @@
 
 require('rootpath')();
 var pg = require('pg');
-var dbUtils = require(controllers/dbSetup)
+var dbUtils = require('controllers/dbSetup')
 
 module.exports = function(app, router) {
   router.get('/dbTest/', function(request, response) {
