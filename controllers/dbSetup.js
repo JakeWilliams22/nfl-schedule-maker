@@ -19,7 +19,7 @@ function testPreferenceInsert() {
       done();
       if(err) return console.error(err);
       console.log("success")
-    }
+    });
   });
 }
 
