@@ -1,7 +1,7 @@
 'use strict';
 
 require('rootpath')();
-require('pg');
+var pg = require('pg');
 
 function createPreferencesTable() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -10,6 +10,12 @@ function createPreferencesTable() {
       if(err) return console.error(err);
       console.log(result.rows);
     }); 
+  });
+}
+
+function testPreferenceInsert() {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query("INSERT INTO preferences")
   });
 }
 
