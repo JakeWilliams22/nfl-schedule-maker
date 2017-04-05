@@ -8,15 +8,20 @@ function createPreferencesTable() {
     client.query("CREATE TABLE IF NOT EXISTS preferences(id SERIAL PRIMARY KEY, name TEXT NOT NULL, priority INT, team TEXT, scheduleYear INT)", function(err, result) {
       done();
       if(err) return console.error(err);
-      console.log(result.rows);
+      console.log("Success");
     }); 
   });
 }
 
 function testPreferenceInsert() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("INSERT INTO preferences")
+    client.query("INSERT INTO preferences VALUES ('test', 1, 'panthers', 2017);", function(err, result) {
+      done();
+      if(err) return console.error(err);
+      console.log("success")
+    }
   });
 }
 
 exports.createPreferencesTable = createPreferencesTable;
+exports.testPreferenceInsert = testPreferenceInsert;

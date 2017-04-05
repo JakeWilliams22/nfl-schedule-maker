@@ -23,6 +23,10 @@ module.exports = function(app, router) {
   router.get('/createPreferencesTable', function() {
     dbUtils.createPreferencesTable();
   });
+  
+  router.get('/testPreferenceInsert', function() {
+    dbUtils.testPreferenceInsert();
+  });
 
   app.use(router);
 };
