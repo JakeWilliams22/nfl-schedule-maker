@@ -20,12 +20,13 @@ module.exports = function(app, router) {
     response.send('WELCOME COLE')
   });
   
-  router.get('/createPreferencesTable', function() {
+  router.get('/createPreferencesTable', function(request, response) {
     dbUtils.createPreferencesTable();
   });
   
-  router.get('/testPreferenceInsert', function() {
+  router.get('/testPreferenceInsert', function(request, response) {
     dbUtils.testPreferenceInsert();
+    response.send("Success");
   });
 
   app.use(router);
