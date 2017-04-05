@@ -14,6 +14,7 @@ function createPreferencesTable() {
 }
 
 var testResponse = "";
+var done = false;
 function testPreferenceInsert() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query("INSERT INTO preferences VALUES (0, 'test', 1, 'panthers', 2017);", function(err, result) {
