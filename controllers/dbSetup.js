@@ -24,7 +24,7 @@ function testPreferenceInsert() {
 
 function testPreferenceGet() {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("SELECT * FROM preferences);", function(err, result) {
+    client.query("SELECT * FROM preferences;", function(err, result) {
       done();
       if(err) return console.error(err);
       console.log(result.rows)
