@@ -20,8 +20,10 @@ function testPreferenceInsert() {
       done();
       if(err) return console.error(err);
       testResponse = "success"
+      done = true;
     });
   });
+  while(!done);
   console.log(testResponse);
 }
 
