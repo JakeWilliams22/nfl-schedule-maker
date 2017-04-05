@@ -28,6 +28,12 @@ module.exports = function(app, router) {
     dbUtils.testPreferenceInsert();
     response.send("Success");
   });
+  
+  router.get('/testPreferenceGet', function(request, response) {
+    dbUtils.testPreferenceGet();
+    response.send("Success");
+  });
+  
 
   app.use(router);
 };
