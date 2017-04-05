@@ -29,10 +29,7 @@ module.exports = function(app, router) {
     response.send("Success");
   });
   
-  router.get('/testPreferenceGet', function(request, response) {
-    dbUtils.testPreferenceGet(res);
-    response.send("Success");
-  });
+  router.get('/testPreferenceGet', dbUtils.testPreferenceGet);
   
 
   app.use(router);

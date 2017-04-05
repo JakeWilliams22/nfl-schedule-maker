@@ -22,7 +22,7 @@ function testPreferenceInsert() {
   });
 }
 
-function testPreferenceGet(res) {
+function testPreferenceGet(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query("SELECT * FROM preferences;", function(err, result) {
       done();
