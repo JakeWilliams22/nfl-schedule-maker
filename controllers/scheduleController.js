@@ -15,6 +15,7 @@ function getRandomSchedule(req, res, next) {
     var opponentNum = Math.floor((Math.random() * (31-teamIndex)) + teamIndex + 1);
     games.push([nfl_teams[teamIndex],nfl_teams[opponentNum]]);
     
+    team.numGames = team.numGames + 1;
     if(team.numGames == 16) {
       teamIndex++;
     }
