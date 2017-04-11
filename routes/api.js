@@ -18,5 +18,7 @@ module.exports = function(app, router) {
 
   router.get('/getRandomSchedule', scheduleController.getRandomSchedule);
 
+  router.get('/dummySchedule',scheduleController.fakeSchedule);
+  
   app.use(router);
 };

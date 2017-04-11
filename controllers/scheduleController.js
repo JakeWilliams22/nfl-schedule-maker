@@ -10,7 +10,7 @@ var numGames = 256;
 function getRandomSchedule(req, res, next) {
   var nfl_teams = sched_dict.nfl_teams;
   nfl_teams.resetNumGames();
-  var games = [];
+  var gamesgam = [];
   
   for(var teamNum = 0; teamNum < 31; teamNum = teamNum + Math.floor(Math.random() * 2)) {
     var team = nfl_teams[teamNum];
@@ -43,4 +43,74 @@ function getRandomSchedule(req, res, next) {
   res.send(games);
 }
 
+function makeScheduleFromTeams(teamList) {
+  var schedule = {};
+  
+  for(var i = 0; i < 16; i++) {
+    var usedTeams = [];
+    schedule[i] = [];
+    for(var teamNum = 0; teamNum < 32; teamNum++) {
+      if (!(teamNum in usedTeams)) {
+        var game = teamList[teamNum].gameList.pop();
+        schedule[i].push(game);
+        
+      }
+    }
+    
+  }
+}
+
+
+
+
+function fakeSched(req, res, next) {
+  var nfl_teams = sched_dict.nfl_teams;
+  var schedule = {};
+  for(var i = 0; i <16; i++) {
+    schedule[i+1] = [];
+    for(var team = 0; team < 16; team++) {
+      schedule[i+1].push([nfl_teams[team], nfl_teams[(team + i)%16 + 16]]);
+    }
+  }
+  
+  res.send(schedule);
+}
+
+exports.fakeSchedule = fakeSched;
 exports.getRandomSchedule = getRandomSchedule;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
