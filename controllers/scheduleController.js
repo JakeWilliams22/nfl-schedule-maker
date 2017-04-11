@@ -15,17 +15,13 @@ function getRandomSchedule(req, res, next) {
     var opponent;
     do {
       opponent = nfl_teams[Math.floor((Math.random() * (31-teamIndex)) + teamIndex + 1)];
-    } while (opponent.numGames >= 16);
-    
-    if (opponent.mascot == team.mascot) {
-      console.log("OPPONENT BAD ");
-    }
+    } while (opponent.numGames >= 1);
     
     games.push([team,opponent]);
     
     team.numGames = team.numGames + 1;
     opponent.numGames = opponent.numGames + 1;
-    if(team.numGames >= 16) {
+    if(team.numGames >= 1) {
       teamIndex++;
     }
   }
