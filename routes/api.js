@@ -3,6 +3,7 @@
 require('rootpath')();
 var pg = require('pg');
 var dbUtils = require('controllers/dbSetup')
+var scheduleController = require('controllers/scheduleController');
 
 module.exports = function(app, router) {
   router.get('/', function(request, response) {
@@ -14,7 +15,8 @@ module.exports = function(app, router) {
   router.get('/testPreferenceInsert', dbUtils.testPreferenceInsert)
   
   router.get('/testPreferenceGet', dbUtils.testPreferenceGet);
-  
+
+  router.get('/getRandomSchedule', scheduleController.getRandomSchedule);
 
   app.use(router);
 };
