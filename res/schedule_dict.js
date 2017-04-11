@@ -41,3 +41,6 @@ function NFL_TEAM(city, mascot) {
   this.city = city;
   this.mascot = mascot;
 }
+
+exports.NFL_TEAM = NFL_TEAM;
+exports.nfl_teams = nfl_teams;
