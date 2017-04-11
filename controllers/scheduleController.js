@@ -10,7 +10,7 @@ var games = [];
 function getRandomSchedule(req, res, next) {
 //  res.send(sched_dict.nfl_teams[1].city);
   var teamIndex = 0;
-  for (var game = 0; game < 256; game++) {
+  for (var game = 0; game < 16; game++) {
     var team = nfl_teams[teamIndex];
     var opponent;
     do {
