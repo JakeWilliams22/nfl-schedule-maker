@@ -12,10 +12,11 @@ function getRandomSchedule(req, res, next) {
   var teamIndex = 0;
   for (var game = 0; game < 256; game++) {
     var team = nfl_teams[teamIndex];
-    var opponentNum = Math.floor((Math.random() * (31-teamIndex)) + teamIndex + 1);
-    games.push([nfl_teams[teamIndex],nfl_teams[opponentNum]]);
+    var opponent = nfl_teams[Math.floor((Math.random() * (31-teamIndex)) + teamIndex + 1)];
+    games.push([team,opponent]);
     
     team.numGames = team.numGames + 1;
+    opponent.numGames = opponent.numGames + 1;
     if(team.numGames == 16) {
       teamIndex++;
     }
