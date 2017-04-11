@@ -21,7 +21,7 @@ function getRandomSchedule(req, res, next) {
     
     team.numGames = team.numGames + 1;
     opponent.numGames = opponent.numGames + 1;
-    if(team.numGames == 16) {
+    if(team.numGames >= 16) {
       teamIndex++;
     }
   }
