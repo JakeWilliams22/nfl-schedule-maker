@@ -3,32 +3,36 @@
 require('rootpath')();
 var sched_dict = require('res/schedule_dict');
 var pg = require('pg');
-var nfl_teams = sched_dict.nfl_teams;
 
-var games = [];
+var gamesPerTeam = 16;
+var numGames = 256;
 
 function getRandomSchedule(req, res, next) {
-//  res.send(sched_dict.nfl_teams[1].city);
+  var nfl_teams = sched_dict.nfl_teams;
+  nfl_teams.resetNumGames();
+  var games = [];
   var teamIndex = 0;
-  for (var game = 0; game < 16; game++) {
+  for (var game = 0; game < numGames; game++) {
     var team = nfl_teams[teamIndex];
     var opponent;
     do {
-      opponent = nfl_teams[Math.floor((Math.random() * (31-teamIndex)) + teamIndex + 1)];
-    } while (opponent.numGames >= 1);
-    
-    console.log("Team: " + team " and opponent" + opponent);
-    
+      var opponentNum = Math.floor((Math.random() * 32));
+      opponent = nfl_teams[opponentNum];
+    } while (opponent.numGames >= gamesPerTeam);
+        
     games.push([team,opponent]);
     
     team.numGames = team.numGames + 1;
     opponent.numGames = opponent.numGames + 1;
-    if(team.numGames >= 1) {
-      teamIndex++;
+    var start = teamIndex;
+    while(teamIndex < 32 && nfl_teams[teamIndex].numGames >= gamesPerTeam) {
+      teamIndex = (teamIndex + 1) % 32;
+      if (teamIndex == start) {
+        break;
+      }
     }
   }
-  
-  res.send(games);
+  console.log("done");
 }
 
 exports.getRandomSchedule = getRandomSchedule;

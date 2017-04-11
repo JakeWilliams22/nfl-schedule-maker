@@ -37,6 +37,12 @@ var nfl_teams = {
   31: new NFL_TEAM('Washington', 'Redskins')
 }
 
+nfl_teams.resetNumGames = function() {
+  for (var i = 0; i <= 31; i++) {
+    this[i].numGames = 0;
+  }
+}
+
 function NFL_TEAM(city, mascot) {
   this.city = city;
   this.mascot = mascot;
