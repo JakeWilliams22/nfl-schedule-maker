@@ -40,6 +40,7 @@ var nfl_teams = {
 nfl_teams.resetNumGames = function() {
   for (var i = 0; i <= 31; i++) {
     this[i].numGames = 0;
+    this[i].opponentList = [];
   }
 }
 
@@ -47,6 +48,16 @@ function NFL_TEAM(city, mascot) {
   this.city = city;
   this.mascot = mascot;
   this.numGames = 0;
+  this.opponentList = [];
+  this.gameList = [];
+}
+
+NFL_TEAM.hasGameScheduledAgainst = function(mascot) {
+  return 0;
+}
+
+NFL_TEAM.prototype.toString = function() {
+  return this.mascot;
 }
 
 exports.NFL_TEAM = NFL_TEAM;
