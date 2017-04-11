@@ -37,9 +37,7 @@ var nfl_teams = {
   32: new NFL_TEAM('Washington', 'Redskins')
 }
 
-class NFL_TEAM {
-  constructor(city, mascot) {
-    this.city = city;
-    this.mascot = mascot;
-  }
+function NFL_TEAM(city, mascot) {
+  this.city = city;
+  this.mascot = mascot;
 }
