@@ -33,6 +33,7 @@ function getRandomSchedule(req, res, next) {
     }
   }
   console.log("done");
+  res.send(games);
 }
 
 exports.getRandomSchedule = getRandomSchedule;
