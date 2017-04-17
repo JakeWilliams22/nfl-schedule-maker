@@ -6,6 +6,12 @@ var dbUtils = require('controllers/dbSetup')
 var scheduleController = require('controllers/scheduleController');
 
 module.exports = function(app, router) {
+  router.all('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', ' Access-Control-Allow-Origin: http://nfl-schedule-maker.herokuapp.com/', 'X-Requested-With, Authorization, Content-Type, Username, Password, Token');
+    next();
+  });
+  
   router.get('/', function(request, response) {
     response.send('WELCOME COLE')
   });
