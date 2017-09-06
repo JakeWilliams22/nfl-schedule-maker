@@ -9,6 +9,12 @@
         <meta name="author" content="">
         <title>coNFLict</title>
 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="scripts/script.js" type='text/javascript'></script>
+        <script src="scripts/jQueryCode.js" type='text/javascript'></script>
+        <script src="scripts/getSchedule.js" type='text/javascript'></script>
+
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -92,85 +98,44 @@
                         <i class="fa fa-table"></i> Game Schedule
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
-                                <colgroup>
-                                    <col width="18%">
-                                    <col width="18%">
-                                    <col width="18%">
-                                    <col width="18%">
-                                    <col width="18%">
-                                    <col width="10%">
-                                </colgroup>
-                                <thead>
+                        <div id="Schedule" class="tabcontent active">
+                            <h3 style="display: inline-block">Schedule</h3>
+                            <select name="week" id="week">
+                                <option value="0">All</option>
+                                <option value="1">Week 1</option>
+                                <option value="2">Week 2</option>
+                                <option value="3">Week 3</option>
+                                <option value="4">Week 4</option>
+                                <option value="5">Week 5</option>
+                                <option value="6">Week 6</option>
+                                <option value="7">Week 7</option>
+                                <option value="8">Week 8</option>
+                                <option value="9">Week 9</option>
+                                <option value="10">Week 10</option>
+                                <option value="11">Week 11</option>
+                                <option value="12">Week 12</option>
+                                <option value="13">Week 13</option>
+                                <option value="14">Week 14</option>
+                                <option value="15">Week 15</option>
+                                <option value="16">Week 16</option>
+                            </select>
+                            <div style="height:40vh;overflow:auto;">
+                                <table class="table" id="exportTlb">
                                     <tr>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th>Home</th>
-                                        <th>Away</th>
-                                        <th>Broadcaster</th>
-                                        <th></th>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                        <td>Home</td>
+                                        <td>Away</td>
+                                        <td>Broadcaster</td>
+                                        <td>Approval</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>10/1/17</td>
-                                        <td>1:00 PM</td>
-                                        <td>Colts</td>
-                                        <td>Bears</td>
-                                        <td>NBC</td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-sm-offset-5 col-sm-2 text-center">
-                                                    <div class="text-center btn-group">
-                                                        <button class="btn btn-success" type="button">Y</button>
-                                                        <button class="btn btn-danger" type="button">N</button>
-                                                    </div>  
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9/15/17</td>
-                                        <td>4:30 PM</td>
-                                        <td>Jaguars</td>
-                                        <td>Vikings</td>
-                                        <td>CBS</td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-sm-offset-5 col-sm-2 text-center">
-                                                    <div class="text-center btn-group">
-                                                        <button class="btn btn-success" type="button">Y</button>
-                                                        <button class="btn btn-danger" type="button">N</button>
-                                                    </div>  
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/22/17</td>
-                                        <td>10:45 PM</td>
-                                        <td>Dolphins</td>
-                                        <td>Texans</td>
-                                        <td>FOX</td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-sm-offset-5 col-sm-2 text-center">
-                                                    <div class="text-center btn-group">
-                                                        <button class="btn btn-success" type="button">Y</button>
-                                                        <button class="btn btn-danger" type="button">N</button>
-                                                    </div>  
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer small text-muted" align="right">
-                        <button class="btn btn-warning" type="button">Export</button>
-                        <button class="btn btn-warning" type="button">Generate</button>
+                        <button class="btn export" type="button">Export</button>
+                        <button class="btn export" type="button"id="generate_schedule_button" style="margin-right: 10px">Generate</button>
                     </div>
                 </div>
             </div>
