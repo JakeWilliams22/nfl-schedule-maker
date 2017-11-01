@@ -1,9 +1,7 @@
 'use strict';
 
 require('rootpath')();
-var pg = require('pg');
 var dbUtils = require('controllers/dbSetup')
-var scheduleController = require('controllers/scheduleController');
 
 module.exports = function(app, router) {
   router.all('*', function (req, res, next) {
@@ -16,15 +14,11 @@ module.exports = function(app, router) {
     response.send('WELCOME COLE')
   });
   
-  router.get('/createPreferencesTable',dbUtils.createPreferencesTable)
+  router.get('/createUsersTable',dbUtils.createUsersTable)
   
-  router.get('/testPreferenceInsert', dbUtils.testPreferenceInsert)
+  router.get('/testUsersInsert', dbUtils.testUserInsert)
   
-  router.get('/testPreferenceGet', dbUtils.testPreferenceGet);
-
-  router.get('/getRandomSchedule', scheduleController.getRandomSchedule);
-
-  router.get('/dummySchedule',scheduleController.fakeSchedule);
+  router.get('/testUsersGet', dbUtils.testUserGet);
   
   app.use(router);
 };

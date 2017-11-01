@@ -3,9 +3,14 @@
 require('rootpath')();
 var pg = require('pg');
 
-function createPreferencesTable(req, res, next) {
+function createUsersTable(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("CREATE TABLE IF NOT EXISTS preferences(id SERIAL PRIMARY KEY, name TEXT NOT NULL, priority INT, team TEXT, scheduleYear INT)", function(err, result) {
+    client.query("CREATE TABLE IF NOT EXISTS users( fName TEXT NOT NULL, \
+                                                    lName TEXT NOT NULL, \
+                                                    email TEXT NOT NULL, \
+                                                    username TEXT PRIMARY KEY, \
+                                                    password TEXT NOT NULL, \
+                                                    type TEXT NOT NULL)", function(err, result) {
       done();
       if(err) return res.send(err);
       res.send("Creation Success");
@@ -13,9 +18,9 @@ function createPreferencesTable(req, res, next) {
   });
 }
 
-function testPreferenceInsert(req, res, next) {
+function testUserInsert(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("INSERT INTO preferences VALUES (2, 'test', 1, 'panthers', 2017);", function(err, result) {
+    client.query("INSERT INTO users VALUES ('kelly', 'fitzpatrick', 'kfitz@gatech.edu', 'kfitz', 'ilovegroup7100', 'admin');", function(err, result) {
       done();
       if(err) return res.send(err);
       res.send("Insert Success");
@@ -23,7 +28,7 @@ function testPreferenceInsert(req, res, next) {
   });
 }
 
-function testPreferenceGet(req, res, next) {
+function testUserGet(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query("SELECT * FROM preferences;", function(err, result) {
       done();
@@ -33,6 +38,6 @@ function testPreferenceGet(req, res, next) {
   });
 }
 
-exports.createPreferencesTable = createPreferencesTable;
-exports.testPreferenceInsert = testPreferenceInsert;
-exports.testPreferenceGet = testPreferenceGet;
+exports.createUsersTable = createUsersTable;
+exports.testUserInsert = testUserInsert;
+exports.testUserGet = testUserGet;
