@@ -30,7 +30,7 @@ function testUserInsert(req, res, next) {
 
 function testUserGet(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("SELECT * FROM preferences;", function(err, result) {
+    client.query("SELECT * FROM users;", function(err, result) {
       done();
       if(err) return console.error(err);
       res.send(result.rows)
