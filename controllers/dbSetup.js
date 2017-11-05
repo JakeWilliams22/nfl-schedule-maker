@@ -42,7 +42,6 @@ function deleteUser(req, res, next) {
   console.log("HERE")
   console.log(String(req.body.username))
   var dQuery = "DELETE FROM users WHERE username = '" + String(req.body.username) + "'"
-  console.log(x)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query(dQuery , function(err, result) {
       done();
