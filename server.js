@@ -5,13 +5,15 @@ require('rootpath')();
 // Required modules
 var express = require('express');
 var routes = require('routes/api');
-var pg = require('pg');
+var bodyParser = require('body-parser')
 
 // Create our Express application & define port
 var app = express();
 var port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'))
+
+app.use(bodyParser.json())
 
 // Connect the API routes with our router and app
 routes(app, express.Router());

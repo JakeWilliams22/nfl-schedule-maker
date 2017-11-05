@@ -20,5 +20,7 @@ module.exports = function(app, router) {
   
   router.get('/testUsersGet', dbUtils.testUserGet);
   
+  router.post('/deleteUser', dbUtils.deleteUser);
+  
   app.use(router);
 };
