@@ -39,10 +39,9 @@ function testUserGet(req, res, next) {
 }
 
 function deleteUser(req, res, next) {
-  username = req.username
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query("DELETE FROM users WHERE\
-                      username == " + username, function(err, result) {
+                      username == " + req.username, function(err, result) {
       done();
       if(err) return res.send(err);
       res.send("Creation Success");
