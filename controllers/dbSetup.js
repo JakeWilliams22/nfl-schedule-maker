@@ -71,8 +71,8 @@ function deleteUser(req, res, next) {
 
 function changePassword(req, res, next) {
   var iQuery = "UPDATE users" + 
-               " SET password = " + req.body.password +
-               " WHERE username = " + req.body.username + ";"
+               " SET password = '" + req.body.password +
+               "' WHERE username = '" + req.body.username + "';"
   console.log(iQuery)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query(iQuery, function(err, result) {
