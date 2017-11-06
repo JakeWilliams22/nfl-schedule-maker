@@ -69,6 +69,20 @@ function deleteUser(req, res, next) {
   });
 }
 
+function changePassword(req, res, next) {
+  var iQuery = "UPDATE users" + 
+               " SET password = " + req.body.password +
+               " WHERE username = " + req.body.username + ";"
+  console.log(iQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(iQuery, function(err, result) {
+      done();
+      if(err) return res.send(err);
+      res.send("Password change success");
+    });
+  });
+}
+
 exports.createUsersTable = createUsersTable;
 exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
