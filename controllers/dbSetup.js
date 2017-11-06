@@ -88,3 +88,4 @@ exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
 exports.deleteUser = deleteUser;
 exports.insertUser = insertUser;
+exports.changePassword = changePassword;

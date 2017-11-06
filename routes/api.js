@@ -23,6 +23,8 @@ module.exports = function(app, router) {
   router.post('/deleteUser', dbUtils.deleteUser);
   
   router.post('/insertUser', dbUtils.insertUser);
+
+  router.post('/changePassword', dbUtils.changePassword);
   
   app.use(router);
 };
