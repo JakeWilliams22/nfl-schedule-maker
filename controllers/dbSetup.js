@@ -38,6 +38,23 @@ function testUserGet(req, res, next) {
   });
 }
 
+function insertUser(req, res, next) {
+  iQuery = "INSERT INTO users VALUES ('" + 
+                              req.body.fName + "','" + 
+                              req.body.lName + "','" + 
+                              req.body.email + "','" + 
+                              req.body.username + "','" + 
+                              req.body.password + "','" + 
+                              req.body.type + "')"
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(iQuery , function(err, result) {
+      done();
+      if(err) return res.send(err);
+      res.send("Insertion Success");
+    }); 
+  });
+}
+
 function deleteUser(req, res, next) {
   console.log("HERE")
   console.log(String(req.body.username))
@@ -46,7 +63,7 @@ function deleteUser(req, res, next) {
     client.query(dQuery , function(err, result) {
       done();
       if(err) return res.send(err);
-      res.send("Creation Success");
+      res.send("Deletion Success");
     }); 
   });
 }
