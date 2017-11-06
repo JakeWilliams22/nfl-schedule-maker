@@ -39,13 +39,14 @@ function testUserGet(req, res, next) {
 }
 
 function insertUser(req, res, next) {
-  iQuery = "INSERT INTO users VALUES ('" + 
+  var iQuery = "INSERT INTO users VALUES ('" + 
                               req.body.fName + "','" + 
                               req.body.lName + "','" + 
                               req.body.email + "','" + 
                               req.body.username + "','" + 
                               req.body.password + "','" + 
                               req.body.type + "')"
+  console.log(iQuery)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query(iQuery , function(err, result) {
       done();
