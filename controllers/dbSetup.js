@@ -72,3 +72,4 @@ exports.createUsersTable = createUsersTable;
 exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
 exports.deleteUser = deleteUser;
+exports.insertUser = insertUser;
