@@ -19,14 +19,14 @@ module.exports = function(app, router) {
   router.get('/testUsersInsert', dbUtils.testUserInsert);
   
   router.get('/testUsersGet', dbUtils.testUserGet);
-
-  router.get('/getUser', dbUtils.getUser);
   
   router.post('/deleteUser', dbUtils.deleteUser);
   
   router.post('/insertUser', dbUtils.insertUser);
 
   router.post('/changePassword', dbUtils.changePassword);
+
+  router.post('/getUser', dbUtils.getUser);  
 
   router.post('/updateUser', dbUtils.updateUser);
   
