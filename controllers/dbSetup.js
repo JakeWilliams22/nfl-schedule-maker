@@ -83,9 +83,42 @@ function changePassword(req, res, next) {
   });
 }
 
+function getUser(req, res, next) {
+  var iQuery = "SELECT *" + 
+               " FROM users"
+               " WHERE username = '" + req.body.username + "';"
+  console.log(iQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(iQuery, function(err, result) {
+      done();
+      if(err) return res.send(err);
+      res.send(result.rows)
+    });
+  });
+}
+
+// Sets all fields except password
+function updateUser(req, res, next) {
+  var iQuery = "UPDATE users " + 
+               "SET fname = '" + req.body.fname + "' " +
+               "SET lname = '" + req.body.lname + "' " +
+               "SET email = '" + req.body.email + "' " +
+               "WHERE username = '" + req.body.username + "';"
+  console.log(iQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(iQuery, function(err, result) {
+      done();
+      if(err) return res.send(err);
+      res.send("Update user success");
+    });
+  });
+}
+
 exports.createUsersTable = createUsersTable;
 exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
 exports.deleteUser = deleteUser;
 exports.insertUser = insertUser;
 exports.changePassword = changePassword;
+exports.getUser = getUser;
+exports.updateUser = updateUser;

@@ -14,17 +14,21 @@ module.exports = function(app, router) {
     response.send('WELCOME COLE')
   });
   
-  router.get('/createUsersTable',dbUtils.createUsersTable)
+  router.get('/createUsersTable',dbUtils.createUsersTable);
   
-  router.get('/testUsersInsert', dbUtils.testUserInsert)
+  router.get('/testUsersInsert', dbUtils.testUserInsert);
   
   router.get('/testUsersGet', dbUtils.testUserGet);
+
+  router.get('/getUser', dbUtils.getUser);
   
   router.post('/deleteUser', dbUtils.deleteUser);
   
   router.post('/insertUser', dbUtils.insertUser);
 
   router.post('/changePassword', dbUtils.changePassword);
+
+  router.post('/updateUser', dbUtils.updateUser);
   
   app.use(router);
 };
