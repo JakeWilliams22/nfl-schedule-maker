@@ -84,7 +84,7 @@ function changePassword(req, res, next) {
 }
 
 function getUser(req, res, next) {
-  var iQuery = "SELECT *" + 
+  var iQuery = "SELECT fname, lname, email" + 
                " FROM users" +
                " WHERE username = '" + req.body.username + "';"
   console.log(iQuery)
@@ -100,9 +100,9 @@ function getUser(req, res, next) {
 // Sets all fields except password
 function updateUser(req, res, next) {
   var iQuery = "UPDATE users " + 
-               "SET fname = '" + req.body.fname + "' " +
-               "SET lname = '" + req.body.lname + "' " +
-               "SET email = '" + req.body.email + "' " +
+               "SET fname = '" + req.body.fname + "', " +
+               "lname = '" + req.body.lname + "', " +
+               "email = '" + req.body.email + "' " +
                "WHERE username = '" + req.body.username + "';"
   console.log(iQuery)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
