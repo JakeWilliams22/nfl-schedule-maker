@@ -85,7 +85,7 @@ function changePassword(req, res, next) {
 
 function getUser(req, res, next) {
   var iQuery = "SELECT *" + 
-               " FROM users"
+               " FROM users" +
                " WHERE username = '" + req.body.username + "';"
   console.log(iQuery)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
