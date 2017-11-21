@@ -137,7 +137,7 @@ function login(req, res, next) {
       done();
       if(err) return res.send(err)
       if(result.rows.length > 0) {
-        var user_type = result[0]['type']
+        var user_type = result.rows[0]['type']
         var token = generateToken()
         insertToken(token, user_type)
         return res.send(token)
