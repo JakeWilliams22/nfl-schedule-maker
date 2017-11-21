@@ -183,6 +183,19 @@ function getUserType(req, res, next) {
   }) 
 }
 
+function logout(req, res, next) {
+  var dQuery = "DELETE FROM tokens WHERE" + 
+                " token = '" + req.body.token + "';"
+  console.log(dQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(dQuery, function(err, result) {
+      done();
+      if (err) return res.send(err)
+      res.send("Delete Successful")
+    })
+  }) 
+}
+
 exports.createUsersTable = createUsersTable;
 exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
@@ -195,3 +208,4 @@ exports.updateUser = updateUser;
 exports.login = login
 exports.getUserType = getUserType
 exports.createTokenTable = createTokenTable
+exports.logout = logout

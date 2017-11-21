@@ -36,5 +36,7 @@ module.exports = function(app, router) {
   
   router.post('/getUserType', dbUtils.getUserType);
   
+  router.post('/logout', dbUtils.logout);
+  
   app.use(router);
 };
