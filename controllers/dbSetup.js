@@ -137,7 +137,7 @@ function login(req, res, next) {
       done();
       if(err) return res.send(err)
       if(result.rows.length > 0) {
-        var user_type = results[0]['type']
+        var user_type = result[0]['type']
         var token = generateToken()
         insertToken(token, user_type)
         return res.send(token)
@@ -164,8 +164,8 @@ function insertToken(token, user_type) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query(iQuery, function(err, result) {
       done()
-      if(err) return res.send(err)
-      res.send("Token Insert Success")
+      if(err) return console.log(err)
+      console.log("Insert Success")
     })
   })
 }
