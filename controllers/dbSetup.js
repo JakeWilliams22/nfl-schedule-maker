@@ -18,6 +18,19 @@ function createUsersTable(req, res, next) {
   });
 }
 
+function createTokenTable(req, res, next) {
+  console.log(process.env.DATABASE_URL)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query("CREATE TABLE IF NOT EXISTS tokens(\
+                    token TEXT PRIMARY KEY, \
+                    user_type TEXT NOT NULL)", function(err, result) {
+      done();
+      if(err) return res.send(err);
+      res.send("Creation Success");
+    }); 
+  });
+}
+
 function testUserInsert(req, res, next) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query("INSERT INTO users VALUES ('kelly', 'fitzpatrick', 'kfitz@gatech.edu', 'kfitz', 'ilovegroup7100', 'admin');", function(err, result) {
@@ -114,6 +127,61 @@ function updateUser(req, res, next) {
   });
 }
 
+function login(req, res, next) {
+  var sQuery = " SELECT * FROM users " +
+                " WHERE username = '" + req.body.username + "' " + 
+                " AND password = '" + req.body.password + "';"
+  console.log(sQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(sQuery, function(err, result) {
+      done();
+      if(err) return res.send(err)
+      //Check exists, if so
+        //var user_type = //something
+        //var token = generateToken()
+        //insertToken(token, user_type)
+        //res.send(token)
+      res.send(result.rows) 
+    })
+  })
+}
+
+function generateToken() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 20; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+function insertToken(token, user_type) {
+  var iQuery = "INSERT INTO tokens VALUES ('" +
+                token + "','" + user_type + "';";
+  console.log(iQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(iQuery, function(err, result) {
+      done()
+      if(err) return res.send(err)
+      res.send("Token Insert Success")
+    })
+  })
+}
+
+function getUserType(req, res, next) {
+  var sQuery = "SELECT user_type FROM tokens " +
+                " WHERE token = '" + req.body.token + "'; "
+  console.log(sQuery)
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query(sQuery, function(err, result) {
+      done();
+      if (err) return res.send(err)
+      res.send(result.rows)
+    })
+  }) 
+}
+
 exports.createUsersTable = createUsersTable;
 exports.testUserInsert = testUserInsert;
 exports.testUserGet = testUserGet;
@@ -122,3 +190,7 @@ exports.insertUser = insertUser;
 exports.changePassword = changePassword;
 exports.getUser = getUser;
 exports.updateUser = updateUser;
+
+exports.login = login
+exports.getUserType = getUserType
+exports.createTokenTable = createTokenTable

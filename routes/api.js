@@ -30,5 +30,11 @@ module.exports = function(app, router) {
 
   router.post('/updateUser', dbUtils.updateUser);
   
+  router.get('/createTokenTable', dbUtils.createTokenTable);
+  
+  router.post('/login', dbUtils.login);
+  
+  router.post('/getUserType', dbUtils.getUserType);
+  
   app.use(router);
 };
