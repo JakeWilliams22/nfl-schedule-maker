@@ -159,7 +159,7 @@ function generateToken() {
 
 function insertToken(token, user_type) {
   var iQuery = "INSERT INTO tokens VALUES ('" +
-                token + "','" + user_type + "';";
+                token + "','" + user_type + "');";
   console.log(iQuery)
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query(iQuery, function(err, result) {
