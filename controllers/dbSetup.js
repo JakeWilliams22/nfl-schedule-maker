@@ -136,7 +136,7 @@ function login(req, res, next) {
     client.query(sQuery, function(err, result) {
       done();
       if(err) return res.send(err)
-      if results.length > 0 {
+      if(results.length > 0) {
         var user_type = results[0]['type']
         var token = generateToken()
         insertToken(token, user_type)
